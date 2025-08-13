@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Fixed viewport for better mobile scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.5, maximum-scale=2, user-scalable=yes">
+    <title>syahirl zaim</title>
+    <!-- Font Awesome for social icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fafafa;
+            padding: 40px 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: background 0.3s, color 0.3s;
+        }
+
+        .nav {
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav a {
+            color: #666;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+
+        .nav a:last-child {
+            margin-right: 0;
+        }
+
+        .nav a:hover {
+            color: #007acc;
+        }
+
+        .nav a.active {
+            color: #333;
+            font-weight: 600;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .greeting {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        body.dark-mode .greeting {
+            color: #fff;
+        }
+
+        .intro {
+            font-size: 16px;
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.5;
+        }
+
+        .intro a {
+            color: #007acc;
+            text-decoration: none;
+        }
+
+        .intro a:hover {
+            text-decoration: underline;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin: 30px 0 15px 0;
+            color: #333;
+        }
+
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .project {
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .project:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .project-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .project-description {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .project-tags {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .blog-post {
+            margin-bottom: 30px;
+            padding-bottom: 25px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .blog-post:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .post-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .post-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        .post-title a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .post-title a:hover {
+            color: #007acc;
+        }
+
+        .post-excerpt {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 8px;
+            line-height: 1.5;
+        }
+
+        .post-tags {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .post-tags a {
+            color: #999;
+            text-decoration: none;
+            margin-right: 8px;
+        }
+
+        .post-tags a:hover {
+            color: #007acc;
+        }
+
+        .social-links {
+            margin-top: 30px;
+            padding-top: 20px;
+            display: flex;
+            gap: 16px;
+        }
+
+        .social-links a {
+            color: #666;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            transition: background 0.2s, color 0.2s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: #fff;
+            background: #007acc;
+        }
+
+        .about-content {
+            font-size: 16px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .skills {
+            margin: 20px 0;
+        }
+
+        .skills h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .skills ul {
+            list-style: none;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .skills li {
+            margin-bottom: 5px;
+        }
+
+        /* Night mode styles */
+        body.dark-mode {
+            background-color: #181818;
+            color: #fff;
+        }
+        body.dark-mode .container {
+            background: #222;
+            color: #fff;
+        }
+        body.dark-mode .nav a,
+        body.dark-mode .nav a.active,
+        body.dark-mode .nav a:hover,
+        body.dark-mode .social-links a,
+        body.dark-mode .project-title,
+        body.dark-mode .page-title,
+        body.dark-mode .section-title,
+        body.dark-mode .skills h3 {
+            color: #fff;
+        }
+        body.dark-mode .project,
+        body.dark-mode .blog-post,
+        body.dark-mode .skills,
+        body.dark-mode .social-links {
+            border-color: #333;
+        }
+        body.dark-mode .post-tags a {
+            color: #bbb;
+        }
+        body.dark-mode .post-tags a:hover {
+            color: #fff;
+        }
+        body.dark-mode .intro,
+        body.dark-mode .about-content,
+        body.dark-mode .skills ul {
+            color: #bbb;
+        }
+        body.dark-mode .post-title,
+        body.dark-mode .post-title a {
+            color: #fff;
+        }
+
+        /* Responsive styles for mobile - removed tight constraints */
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 16px;
+            }
+            .container {
+                padding: 32px 24px;
+                max-width: 100%;
+            }
+            .greeting, .page-title {
+                font-size: 22px;
+            }
+            .section-title {
+                font-size: 17px;
+            }
+            .project-title,
+            .skills h3 {
+                font-size: 16px;
+            }
+            .intro,
+            .about-content,
+            .project-description,
+            .skills ul,
+            .post-excerpt {
+                font-size: 15px;
+            }
+            .nav {
+                flex-direction: column;
+                align-items: flex-start;
+                padding-bottom: 16px;
+            }
+            .nav-links {
+                margin-bottom: 12px;
+            }
+            .social-links a {
+                font-size: 22px;
+                width: 36px;
+                height: 36px;
+            }
+            .project-card-grid {
+                gap: 16px;
+            }
+            .project-card {
+                padding: 24px 20px 18px 20px;
+                min-height: 120px;
+            }
+            .project-card-title {
+                font-size: 20px;
+            }
+            .project-card-desc {
+                font-size: 15px;
+            }
+            .tag {
+                font-size: 14px;
+                padding: 4px 12px;
+            }
+        }
+        /* Toggle switch styles */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            margin-left: auto;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 56px;
+            height: 28px;
+            vertical-align: middle;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ddd;
+            border-radius: 34px;
+            transition: .4s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: .4s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+        }
+        .switch input:checked + .slider {
+            background-color: #222;
+        }
+        .switch input:checked + .slider:before {
+            transform: translateX(28px);
+            background-color: #333;
+        }
+        #toggle-label {
+            vertical-align: middle;
+            margin-left: 8px;
+            color: #666;
+            font-size: 14px;
+            user-select: none;
+        }
+        body.dark-mode #toggle-label {
+            color: #fff;
+        }
+
+        /* Project Card Styles */
+        .project-card-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        @media (max-width: 600px) {
+            .project-card-grid { grid-template-columns: 1fr; }
+        }
+        .project-card {
+            background: #f6f6f6;
+            border-radius: 18px;
+            padding: 28px 28px 24px 28px;
+            box-shadow: 0 1px 12px 0 rgba(0,0,0,0.06);
+            border: 1px solid #ededed;
+            transition: box-shadow 0.2s, border 0.2s, background 0.3s;
+            display: flex;
+            flex-direction: column;
+            min-height: 140px;
+            position: relative;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .project-card:hover {
+            box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
+            border: 1.5px solid #007acc;
+            background: #f0f8ff;
+        }
+        .project-card-title {
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #222;
+            transition: color 0.3s;
+        }
+        body.dark-mode .project-card-title {
+            color: #fff;
+        }
+        .project-card-desc {
+            font-size: 17px;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        .project-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .tag {
+            background: #eaeaea;
+            color: #555;
+            border-radius: 14px;
+            padding: 4px 14px;
+            font-size: 15px;
+            font-family: inherit;
+            display: inline-block;
+            font-weight: 500;
+        }
+        .project-card .fa-arrow-up-right-from-square {
+            position: absolute;
+            right: 22px;
+            bottom: 22px;
+            font-size: 22px;
+            color: #999;
+            opacity: 0.8;
+            pointer-events: none;
+        }
+        .project-card:hover .fa-arrow-up-right-from-square {
+            color: #007acc;
+            opacity: 1;
+        }
+        body.dark-mode .project-card {
+            background: #232323;
+            border-color: #333;
+        }
+        body.dark-mode .project-card:hover {
+            background: #222d38;
+            border-color: #007acc;
+        }
+        body.dark-mode .project-card-desc { color: #bbb; }
+        body.dark-mode .tag { background: #333; color: #bbb; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <div class="nav-links">
+                <a href="#" onclick="showSection('home', event)" class="nav-link active">home</a>
+                <a href="#" onclick="showSection('blog', event)" class="nav-link">blog</a>
+                <a href="#" onclick="showSection('projects', event)" class="nav-link">projects</a>
+                <a href="#" onclick="showSection('about', event)" class="nav-link">about</a>
+            </div>
+            <div class="toggle-container">
+                <label class="switch">
+                    <input type="checkbox" id="toggle-dark">
+                    <span class="slider"></span>
+                </label>
+                <span id="toggle-label">Light mode</span>
+            </div>
+        </nav>
+
+        <!-- Home Section -->
+        <div id="home" class="section active">
+            <h1 class="greeting">hi, i'm syahirl 😎</h1>
+            <p class="intro">
+                i'm 20, a malaysian student at imperial college london. mainly learning on html,
+                <a href="https://reactjs.org" target="_blank" rel="noopener">react</a>, 
+                <a href="https://nodejs.org" target="_blank" rel="noopener">node.js</a> and 
+                <a href="https://www.python.org" target="_blank" rel="noopener">python</a> as a side quest. also currently working on a few side projects.
+                besides that, i love business & finance too!
+            </p>
+            <h2 class="section-title">recent projects 👽</h2>
+            <div class="project-card-grid">
+                <a href="https://denaiboutique.my/" target="_blank" rel="noopener" class="project-card">
+                    <div class="project-card-title">denai boutique</div>
+                    <div class="project-card-desc">full-stack online store with payment integration and admin dashboard.</div>
+                    <div class="project-card-tags">
+                        <span class="tag">wordpress</span>
+                        <span class="tag">e-commerce</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+                <a href="#" class="project-card" style="pointer-events: none; opacity: 0.7;">
+                    <div class="project-card-title">this personal portfolio</div>
+                    <div class="project-card-desc">personal portfolio showcasing projects and skills.</div>
+                    <div class="project-card-tags">
+                        <span class="tag">html</span>
+                        <span class="tag">css</span>
+                        <span class="tag">javascript</span>
+                    </div>
+                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                </a>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/syahirl-zaim-204276280/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:syahirlzaimm@gmail.com" aria-label="Gmail">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Blog Section -->
+        <div id="blog" class="section">
+            <h1 class="page-title">blog 📝</h1>
+            <article class="blog-post">
+                <div class="post-date">aug 13, 2025</div>
+                <h2 class="post-title">
+                    <a href="blog-post-1.html" target="_blank" rel="noopener">my first project hard launch</a>
+                </h2>
+                <p class="post-excerpt">
+                    the reason i decided to build my own portfolio is because of Khairin Chan...       
+                </p>
+                <div class="post-tags">
+                    <a href="#">css</a>
+                    <a href="#">web-development</a>
+                    <a href="#">frontend</a>
+                </div>
+            </article>
+        </div>
+
+        <!-- Projects Section -->
+        <div id="projects" class="section">
+            <h1 class="page-title">projects and experiences 🚀</h1>
+            <div class="project">
+                <div class="project-title">animation</div>
+                <div class="project-description">first learned about computers and algorithms thru my involvement in an animation competition during my primary school.</div>
+                <div class="project-tags">alice • scratch</div>
+            </div>
+            <div class="project">
+                <div class="project-title">house rental system</div>
+                <div class="project-description">collaborative project with my partner for my ASK form 3 final year project</div>
+                <div class="project-tags">python</div>
+            </div>
+            <div class="project">
+                <div class="project-title">first job after spm at a local boutique</div>
+                <div class="project-description">cool experience to develop my sales skills</div>
+            </div>
+            <div class="project">
+                <div class="project-title">e-commerce platform for denai boutique</div>
+                <div class="project-description">full-stack online store with payment integration, inventory management, and customer dashboard for denai boutique. my face is in the website.</div>
+                <div class="project-tags">wordpress</div>
+            </div>
+            <div class="project">
+                <div class="project-title">first intern at myHarapan</div>
+                <div class="project-description">a non profit organization that focuses on empowering youth in malaysia.</div>
+                <div class="project-tags">microsoft 365</div>
+            </div>
+            <div class="project">
+                <div class="project-title">CollegeLAH</div>
+                <div class="project-description">act as a director of UK applications, help pre u students in ucas application process. this is my team member</div>
+            </div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="section">
+            <h1 class="page-title">about me 🤔</h1>
+            <div class="about-content">
+                <p>
+                    i'm a geophysics student at imperial college london, started learning programming in primary school, 
+                    and have been passionate about technology ever since. i love building things that solve real problems 
+                    and make life easier for people.
+                </p>
+            </div>
+            <div class="about-content">
+                <p>
+                    i want to use my skills to create impactful solutions, 
+                    whether it's through web development, data analysis, or software engineering.
+                </p>
+            </div>
+            <div class="about-content">
+                <p>
+                    i rarely code, i love to spend time with my friends and travelling around the world.
+                    i also love to find some work to do during my free time.
+                </p>
+            </div>
+            <div class="about-content">
+                <p>
+                    feel free to hit me up if you want to build your own personal portfolio pages!
+                </p>
+            </div>
+            <div class="skills">
+                <h3>technical skills</h3>
+                <ul>
+                    <li>• frontend: react, next.js, vue.js, html/css, javascript/typescript</li>
+                    <li>• backend: node.js, python, laravel, express, fastapi</li>
+                    <li>• databases: postgresql, mongodb, mysql, redis</li>
+                    <li>• tools: git, docker, aws, vercel, figma</li>
+                </ul>
+            </div>
+            <div class="skills">
+                <h3>education</h3>
+                <ul>
+                    <li>• bsc geophysics, imperial college london</li>
+                    <li>• ibdp, kolej mara banting</li>
+                    <li>• various online courses and certifications</li>
+                </ul>
+            </div>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/syahirl-zaim-204276280/" target="_blank" rel="noopener" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+                <a href="mailto:syahirlzaimm@gmail.com" aria-label="Gmail">
+                    <i class="fa-regular fa-envelope"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionName, evt) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Remove active class from all nav links
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+
+            // Show selected section
+            document.getElementById(sectionName).classList.add('active');
+
+            // Add active class to clicked nav link (only if called by click)
+            if (evt && evt.target && evt.target.classList.contains('nav-link')) {
+                evt.target.classList.add('active');
+            }
+        }
+
+        // Show section based on URL hash on page load
+        window.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash.replace('#', '');
+            if (hash && document.getElementById(hash)) {
+                showSection(hash);
+            }
+
+            // Toggle switch logic
+            const toggle = document.getElementById('toggle-dark');
+            const label = document.getElementById('toggle-label');
+            // Set initial state
+            if (document.body.classList.contains('dark-mode')) {
+                toggle.checked = true;
+                label.textContent = 'Dark mode';
+            }
+            toggle.addEventListener('change', function() {
+                document.body.classList.toggle('dark-mode');
+                label.textContent = document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode';
+            });
+        });
+    </script>
+</body>
+</html>

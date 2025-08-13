@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Fixed viewport for better mobile scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.5, maximum-scale=2, user-scalable=yes">
+    <title>blog</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafafa;
+            color: #333;
+            padding: 40px 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: background 0.3s, color 0.3s;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 24px;
+            color: inherit;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #007acc;
+            text-decoration: underline;
+        }
+        .post-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .post-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        .post-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #444;
+        }
+        a {
+            color: #007acc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #181818;
+            color: #fff;
+        }
+        body.dark-mode .container {
+            background: #222;
+            color: #fff;
+        }
+        body.dark-mode .post-title {
+            color: #fff;
+        }
+        body.dark-mode .post-content {
+            color: #ccc;
+        }
+        body.dark-mode .back-link {
+            color: #fff;
+        }
+        body.dark-mode .back-link:hover {
+            color: #66aaff;
+        }
+        body.dark-mode a {
+            color: #66aaff;
+        }
+        body.dark-mode a:hover {
+            color: #fff;
+        }
+        body.dark-mode .post-date {
+            color: #bbb;
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 16px;
+            }
+            .container {
+                padding: 32px 24px;
+            }
+            .post-title {
+                font-size: 22px;
+            }
+            .post-content {
+                font-size: 15px;
+            }
+        }
+        /* Toggle switch styles */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 56px;
+            height: 28px;
+            vertical-align: middle;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ddd;
+            border-radius: 34px;
+            transition: .4s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: .4s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+        }
+        .switch input:checked + .slider {
+            background-color: #222;
+        }
+        .switch input:checked + .slider:before {
+            transform: translateX(28px);
+            background-color: #333;
+        }
+        #toggle-label {
+            vertical-align: middle;
+            margin-left: 8px;
+            color: #666;
+            font-size: 14px;
+            user-select: none;
+        }
+        body.dark-mode #toggle-label {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="toggle-dark">
+                <span class="slider"></span>
+            </label>
+            <span id="toggle-label">Light mode</span>
+        </div>
+        <a href="index.html#blog" class="back-link">&larr; back to blog</a>
+        <div class="post-date">aug 13, 2025</div>
+        <h1 class="post-title">hi this is my first project hard launch</h1>
+        <div class="post-content">
+            <p>
+                the reason i decided to build my own portfolio is because of Khairin Chan, the creator of SedekahJe, a platform that generates random qr codes of local mosques so people can easily donate.
+            </p>
+            <p>
+                i was really impressed by his kindness and skills and seeing that he also had his own portfolio made me want to start mine too.
+            </p>
+            <p>
+                now, this portfolio is my personal project and a place to share what i'm building and learning along the way.
+            </p>
+            <p>
+                anyway, let's sedekah @
+                 <a href="https://sedekah.je/rawak" target="_blank" rel="noopener">SedekahJe</a>
+            </p>
+        </div>
+    </div>
+    <script>
+        // Night mode toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('toggle-dark');
+            const label = document.getElementById('toggle-label');
+            // Set initial state
+            if (document.body.classList.contains('dark-mode')) {
+                toggle.checked = true;
+                label.textContent = 'Dark mode';
+            }
+            toggle.addEventListener('change', function() {
+                document.body.classList.toggle('dark-mode');
+                label.textContent = document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode';
+            });
+        });
+    </script>
+</body>
+</html>
