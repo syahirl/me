@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Fixed viewport for better mobile scaling -->
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.5, maximum-scale=2, user-scalable=yes">
+    <title>blog</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #fafafa;
+            color: #333;
+            padding: 40px 20px;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            transition: background 0.3s, color 0.3s;
+        }
+        .back-link {
+            display: inline-block;
+            margin-bottom: 24px;
+            color: inherit;
+            text-decoration: none;
+            font-family: inherit;
+            font-size: 15px;
+            transition: color 0.2s;
+        }
+        .back-link:hover {
+            color: #007acc;
+            text-decoration: underline;
+        }
+        .post-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .post-title {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            color: #222;
+        }
+        .post-content {
+            font-size: 16px;
+            line-height: 1.7;
+            color: #444;
+        }
+        a {
+            color: #007acc;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        
+        /* Photo collage styles */
+        .photo-gallery {
+            margin: 30px 0;
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-template-rows: repeat(8, 60px);
+            gap: 15px;
+            height: 500px;
+        }
+        .photo {
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.1s;
+            object-fit: cover;
+            filter: saturate(1.1) contrast(1.05);
+        }
+        .photo:hover {
+            transform: scale(1.05) rotate(1deg);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .photo1 {
+            grid-column: 1 / 7;
+            grid-row: 1 / 5;
+            transform: rotate(-2deg);
+            width: 100%;
+            height: 100%;
+        }
+        .photo2 {
+            grid-column: 7 / 13;
+            grid-row: 2 / 6;
+            transform: rotate(3deg);
+            width: 100%;
+            height: 100%;
+        }
+        .photo3 {
+            grid-column: 2 / 6;
+            grid-row: 4 / 8;
+            transform: rotate(1deg);
+            width: 100%;
+            height: 100%;
+        }
+        .photo4 {
+            grid-column: 8 / 12;
+            grid-row: 5 / 9;
+            transform: rotate(-1.5deg);
+            width: 100%;
+            height: 100%;
+        }
+        
+        /* Dark mode styles */
+        body.dark-mode {
+            background: #181818;
+            color: #fff;
+        }
+        body.dark-mode .container {
+            background: #222;
+            color: #fff;
+        }
+        body.dark-mode .post-title {
+            color: #fff;
+        }
+        body.dark-mode .post-content {
+            color: #ccc;
+        }
+        body.dark-mode .back-link {
+            color: #fff;
+        }
+        body.dark-mode .back-link:hover {
+            color: #66aaff;
+        }
+        body.dark-mode a {
+            color: #66aaff;
+        }
+        body.dark-mode a:hover {
+            color: #fff;
+        }
+        body.dark-mode .post-date {
+            color: #bbb;
+        }
+        body.dark-mode .photo {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        body.dark-mode .photo:hover {
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 16px;
+            }
+            .container {
+                padding: 32px 24px;
+            }
+            .post-title {
+                font-size: 22px;
+            }
+            .post-content {
+                font-size: 15px;
+            }
+            .photo-gallery {
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+                height: auto;
+            }
+            .photo {
+                width: 100%;
+                height: 200px;
+                transform: none !important;
+            }
+            .photo1, .photo2, .photo3, .photo4 {
+                grid-column: unset;
+                grid-row: unset;
+            }
+        }
+        /* Toggle switch styles */
+        .toggle-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            margin-bottom: 24px;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 56px;
+            height: 28px;
+            vertical-align: middle;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #ddd;
+            border-radius: 34px;
+            transition: .4s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 3px;
+            bottom: 3px;
+            background-color: #fff;
+            border-radius: 50%;
+            transition: .4s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.10);
+        }
+        .switch input:checked + .slider {
+            background-color: #222;
+        }
+        .switch input:checked + .slider:before {
+            transform: translateX(28px);
+            background-color: #333;
+        }
+        #toggle-label {
+            vertical-align: middle;
+            margin-left: 8px;
+            color: #666;
+            font-size: 14px;
+            user-select: none;
+        }
+        body.dark-mode #toggle-label {
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="toggle-container">
+            <label class="switch">
+                <input type="checkbox" id="toggle-dark">
+                <span class="slider"></span>
+            </label>
+            <span id="toggle-label">Light mode</span>
+        </div>
+        <a href="index.html#blog" class="back-link">&larr; back to blog</a>
+        <div class="post-date">sep 2, 2025</div>
+        <h1 class="post-title">batang kali trip with my hs friends</h1>
+        <div class="post-content">
+            <p>
+                we recently went on a trip to batang kali with my high school friends. it was a refreshing break from our usual routine and a great opportunity to reconnect.
+            </p>
+            <p>
+                the trip was filled with laughter, adventure, and beautiful scenery. this could be my last trip with some of them before i head off to university, so it was extra special.
+            </p>
+            <p>
+                i hope we get to do this again sometime in the future. until then, i'll cherish the memories we made on this trip.
+            </p>        
+        </div>
+    </div>
+    <script>
+        // Night mode toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggle = document.getElementById('toggle-dark');
+            const label = document.getElementById('toggle-label');
+            // Set initial state
+            if (document.body.classList.contains('dark-mode')) {
+                toggle.checked = true;
+                label.textContent = 'Dark mode';
+            }
+            toggle.addEventListener('change', function() {
+                document.body.classList.toggle('dark-mode');
+                label.textContent = document.body.classList.contains('dark-mode') ? 'Dark mode' : 'Light mode';
+            });
+        });
+    </script>
+</body>
+</html>
