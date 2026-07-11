@@ -234,6 +234,60 @@
         body.dark-mode #toggle-label {
             color: #fff;
         }
+
+        /* Extra bottom photo pair */
+        .photo-pair {
+            margin: 30px 0;
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .photo-pair .photo {
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, z-index 0.1s;
+            object-fit: cover;
+            filter: saturate(1.1) contrast(1.05);
+        }
+        .photo-pair .photo:hover {
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+        .photo-landscape {
+            width: 320px;
+            height: 220px;
+            transform: rotate(-3deg);
+        }
+        .photo-landscape:hover {
+            transform: scale(1.05) rotate(-1deg);
+        }
+        .photo-portrait {
+            width: 200px;
+            height: 300px;
+            transform: rotate(4deg);
+        }
+        .photo-portrait:hover {
+            transform: scale(1.05) rotate(6deg);
+        }
+        body.dark-mode .photo-pair .photo {
+            box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+        }
+        body.dark-mode .photo-pair .photo:hover {
+            box-shadow: 0 16px 40px rgba(0,0,0,0.4);
+        }
+        @media (max-width: 600px) {
+            .photo-pair {
+                flex-direction: column;
+                align-items: center;
+            }
+            .photo-landscape, .photo-portrait {
+                width: 100%;
+                height: 220px;
+                transform: none !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -258,6 +312,12 @@
             <p>
                 im looking forward to making them proud. im going to spend another two years here, and im really excited for what’s ahead. After all, im really really proud to call this wonderful university a home away from home…
             </p>        
+        </div>
+
+        <!-- Extra photo pair: 1 landscape, 1 portrait, random rotation -->
+        <div class="photo-pair">
+            <img src="photos/BLOG3_1.jpg" alt="landscape photo" class="photo photo-landscape">
+            <img src="photos/BLOG3_2.JPG" alt="portrait photo" class="photo photo-portrait">
         </div>
     </div>
     <script>
