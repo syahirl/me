@@ -60,8 +60,33 @@
         a:hover {
             text-decoration: underline;
         }
-        
-        /* Photo collage styles */
+
+        /* Photo pair styles (used by this post) */
+        .photo-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 30px 0;
+        }
+        .photo-pair .photo {
+            width: 100%;
+            height: 260px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+            filter: saturate(1.1) contrast(1.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .photo-pair .photo:hover {
+            transform: scale(1.03);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+        }
+        .photo-pair .photo-landscape {
+            grid-column: 1 / -1;
+            height: 300px;
+        }
+
+        /* Photo collage styles (kept for other posts using this layout) */
         .photo-gallery {
             margin: 30px 0;
             display: grid;
@@ -110,7 +135,7 @@
             width: 100%;
             height: 100%;
         }
-        
+
         /* Dark mode styles */
         body.dark-mode {
             background: #181818;
@@ -147,7 +172,7 @@
         body.dark-mode .photo:hover {
             box-shadow: 0 16px 40px rgba(0,0,0,0.4);
         }
-        
+
         @media (max-width: 600px) {
             body {
                 padding: 20px 16px;
@@ -167,14 +192,21 @@
                 gap: 20px;
                 height: auto;
             }
-            .photo {
+            .photo1, .photo2, .photo3, .photo4 {
+                grid-column: unset;
+                grid-row: unset;
+            }
+            .photo-gallery .photo {
                 width: 100%;
                 height: 200px;
                 transform: none !important;
             }
-            .photo1, .photo2, .photo3, .photo4 {
-                grid-column: unset;
-                grid-row: unset;
+            .photo-pair {
+                grid-template-columns: 1fr;
+            }
+            .photo-pair .photo,
+            .photo-pair .photo-landscape {
+                height: 220px;
             }
         }
         /* Toggle switch styles */
@@ -257,8 +289,17 @@
             </p>
             <p>
                 i hope we get to do this again sometime in the future. until then, i'll cherish the memories we made on this trip.
-            </p>        
+            </p>
+            <p>
+                here are some pics from the trip!
+            </p>      
         </div>
+
+        <div class="photo-pair">
+            <img src="photos/TRIP2.JPG" alt="landscape photo" class="photo photo-landscape">
+            <img src="photos/TRIP1.JPG" alt="portrait photo" class="photo photo-portrait">
+            <img src="photos/TRIP4.JPG" alt="portrait photo" class="photo photo-portrait">
+        </div> 
     </div>
     <script>
         // Night mode toggle
